@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create new node</title>
+</head>
+
+<body>
+    <h1>Create a new node:</h1>
+    <form action="/nodes" method="post">
+        <label for="topic">Select topic: </label>
+        <select name="topic" id="topic">
+            <option value="">--Please choose an option--</option>
+            <option value="RealTalk">RealTalk</option>
+            <option value="Jap">Jap</option>
+            <option value="Musings">Musings</option>
+        </select>
+        <a href="/topic/new"> or create a new topic</a>
+        <br>
+        <label for="data">Enter data: </label>
+        <textarea name="data" id="data" cols="30" rows="8" placeholder="type here.."
+            required="Text is required."></textarea>
+        <hr>
+        <button>Submit</button>
+    </form>
+
+</body>
+
+</html>

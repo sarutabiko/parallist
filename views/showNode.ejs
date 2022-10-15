@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bare it all, node</title>
+</head>
+
+<body>
+    <h1>
+        <%= getNode.topic %> : <%= getNode.entry %>
+    </h1>
+    <p>
+        <%= getNode.data %>
+    </p>
+    <i>
+        id: <%=getNode._id %>
+    </i>
+    <br>
+    <hr>
+    <form style="display: inline-block;" action="/nodes">
+        <button>Back</button>
+    </form>
+    <form style="display: inline-block;" action="/nodes/<%=getNode._id%>/edit">
+        <button>EDIT</button>
+    </form>
+    <form action="/nodes/<%= getNode._id  %>?_method=DELETE" method="post">
+        <button>Delete</button>
+    </form>
+</body>
+
+</html>
