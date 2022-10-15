@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit</title>
-</head>
-
-<body>
     <h1>
         <%= getNode.topic %> : <%= getNode.entry %>
     </h1>
@@ -18,7 +9,7 @@
     <form style="display: inline-block;" action="/nodes/<%= getNode._id%>?_method=PUT" method="post">
         <label for="data">Enter updated data: </label>
         <textarea name="data" id="data" cols="30" rows="8" placeholder="type here.."
-            required="Text is required."></textarea>
+            required="Text is required."><%= getNode.data %></textarea>
         <br>
         <hr>
         <button>Confirm</button>
@@ -27,6 +18,3 @@
     <form style="display: inline-block;" action="/nodes/<%=getNode._id  %> ">
         <button>Cancel</button>
     </form>
-</body>
-
-</html>
