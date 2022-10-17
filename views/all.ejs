@@ -1,21 +1,29 @@
 <% layout('layouts/boilerplate') %>
 
-    <h1>
+    <h1 class="text-center">
         <%=topic.substring(0,1).toUpperCase()+topic.substring(1) %> Nodes
     </h1>
-    <ul>
-        <% for (let n of allNodes) {%>
-            <li>
-                <a href="/nodes?topic=<%=n.topic%>">
-                    <%=n.topic%>
-                </a> : <a href="/nodes/<%=n._id%>">
-                    <%=n.entry%> : <%=n.data.substring(0,15)+"..."%>
-                </a>
+    <div class="row align-items-center ">
+        <ul class="col-6 border list-group">
+            <% for (let n of allNodes) {%>
+                <li class="list-group-item">
+                    <a class="btn btn-secondary mb-1" href="/nodes?topic=<%=n.topic%>">
+                        <%=n.topic%>
+                    </a> : <a class="btn rounded-pill text-white bg-secondary" href="/nodes/<%=n._id%>">
+                        <%=n.entry%>
+                    </a> : <a class=" btn rounded-pill text-white bg-secondary" href="/nodes/<%=n._id%>"">
+                    <%=n.data.substring(0,15)+" ..."%>
 
-            </li>
-            <% } %>
-    </ul>
-    <h3><a href="/nodes/new">Create new</a></h3>
+                    </a>
+
+                </li>
+                <% } %>
+        </ul>
+        <div class="col-6">
+            or<a class="offset-3 btn btn-lg btn-primary" href="/nodes/new">Create new</a>
+        </div>
+
+    </div>
     <% if (topic !=="all" ) {%>
         <h3><a href="/nodes">View all</a></h3>
         <% } %>

@@ -1,22 +1,28 @@
 <% layout('layouts/boilerplate') %>
 
-    <h1>
+    <h1 class="text-center">
         <%= getNode.topic %> : <%= getNode.entry %>
     </h1>
-    <p>
-        <%= getNode.data %>
-    </p>
-    <i>
-        id: <%=getNode._id %>
-    </i>
-    <br>
-    <hr>
-    <form style="display: inline-block;" action="/nodes">
-        <button>Back</button>
-    </form>
-    <form style="display: inline-block;" action="/nodes/<%=getNode._id%>/edit">
-        <button>EDIT</button>
-    </form>
-    <form action="/nodes/<%= getNode._id  %>?_method=DELETE" method="post">
-        <button>Delete</button>
-    </form>
+    <div class="col-6 offset-3">
+
+        <span
+            class="offset-3 col-6 d-block border rounded-4 box-sizing:border-box px-3 text-center bg-secondary text-white">
+            <%= getNode.data %>
+        </span>
+        <span class="mt-3   d-block text-muted text-center">
+            id: <%=getNode._id %>
+        </span>
+        <br>
+        <hr>
+        <div class="d-flex justify-content-evenly">
+            <a class="btn btn-secondary" href="/nodes">Back</a>
+            <a class="btn btn-warning" href="/nodes/<%=getNode._id%>/edit">EDIT</a>
+            <form class="" action="/nodes/<%= getNode._id  %>?_method=DELETE" method="post">
+                <button class="btn   btn-danger ">Delete</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    </div>
