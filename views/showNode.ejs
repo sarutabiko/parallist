@@ -15,7 +15,7 @@
         <br>
         <hr>
         <div class="d-flex justify-content-evenly">
-            <a class="btn btn-secondary" href="/nodes">Back</a>
+            <a class="btn btn-info" href="/nodes">Back</a>
             <a class="btn btn-warning" href="/nodes/<%=getNode._id%>/edit">EDIT</a>
             <form class="" action="/nodes/<%= getNode._id  %>?_method=DELETE" method="post">
                 <button class="btn   btn-danger ">Delete</button>
@@ -23,6 +23,22 @@
         </div>
     </div>
 
-
-
+    <div class="card col-4 offset-4 mt-3">
+        <div class="card-body">
+            <h1 class="card-title text-center ">
+                <%= getNode.topic %> : <%= getNode.entry %>
+            </h1>
+            <p class="my-3 card-text border rounded-3 px-3 bg-secondary text-white text-center">
+                <%= getNode.data %>
+            </p>
+            <p class="fw-light fs-6 text-muted">Last modified: <%= getNode.date.toLocaleString() %>
+            </p>
+            <div class="d-flex justify-content-evenly">
+                <a class="btn btn-info" href="/nodes">Back</a>
+                <a class="btn btn-warning" href="/nodes/<%=getNode._id%>/edit">Edit</a>
+                <form class="" action="/nodes/<%= getNode._id  %>?_method=DELETE" method="post">
+                    <button class="btn   btn-danger ">Delete</button>
+                </form>
+            </div>
+        </div>
     </div>

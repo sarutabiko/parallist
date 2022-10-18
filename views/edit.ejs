@@ -1,20 +1,23 @@
 <% layout('layouts/boilerplate') %>
 
-    <h1>
+    <h1 class="text-center">
         <%= getNode.topic %> : <%= getNode.entry %>
     </h1>
-    <form action=""><label for="data">Current data: </label>
-        <textarea name="data" id="data" cols="30" rows="8" disabled><%= getNode.data %> </textarea>
-    </form>
-    <form style="display: inline-block;" action="/nodes/<%= getNode._id%>?_method=PUT" method="post">
-        <label for="data">Enter updated data: </label>
-        <textarea name="data" id="data" cols="30" rows="8" placeholder="type here.."
-            required="Text is required."><%= getNode.data %></textarea>
-        <br>
-        <hr>
-        <button>Confirm</button>
-    </form>
+    <div class="col-6 offset-3">
 
-    <form style="display: inline-block;" action="/nodes/<%=getNode._id  %> ">
-        <button>Cancel</button>
-    </form>
+        <form action="">
+            <label class="form-label" for="data">Current data: </label>
+            <textarea class="form-control" name="data" id="data" cols="30" rows="6"
+                disabled><%= getNode.data %> </textarea>
+        </form>
+        <form class="d-inline" action="/nodes/<%= getNode._id%>?_method=PUT" method="post">
+            <label class="form-label" for="data">Enter updated data: </label>
+            <textarea class="form-control" name="data" id="data" cols="30" rows="6"
+                required="Text is required."><%= getNode.data %></textarea>
+            <hr>
+            <% getNode.date=Date.now() %>
+                <button class="btn btn-primary">Confirm</button>
+        </form>
+
+        <a href="/nodes/<%=getNode._id  %> " class="btn btn-warning">Cancel</a>
+    </div>
