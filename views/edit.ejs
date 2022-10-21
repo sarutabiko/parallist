@@ -1,21 +1,31 @@
 <% layout('layouts/boilerplate') %>
 
     <h1 class="text-center">
-        <%= getNode.topic %> : <%= getNode.entry %>
+        <span class="border border-5 rounded-pill px-3 py-0"> <span class="text-primary">
+                <%= getNode.topic %>
+            </span> : <%= getNode.entry %>
     </h1>
     <div class="col-6 offset-3">
-
         <form action="">
             <label class="form-label" for="data">Current data: </label>
             <textarea class="form-control" name="data" id="data" cols="30" rows="6"
                 disabled><%= getNode.data %> </textarea>
         </form>
         <form class="d-inline" action="/nodes/<%= getNode._id%>?_method=PUT" method="post">
+            <div class="row">
+                <div class="col-6 my-2">
+                    <select required name="topic" class="form-select" id="topic">
+                        <option value="<%= getNode.topic %>" selected>
+                            <%= getNode.topic%>
+                        </option>
+                    </select>
+                </div>
+            </div>
             <label class="form-label" for="data">Enter updated data: </label>
             <textarea class="form-control" name="data" id="data" cols="30" rows="6"
                 required="Text is required."><%= getNode.data %></textarea>
             <hr>
-            <% getNode.date=Date.now() %>
+            <% getNode.date=Date.now%>
                 <button class="btn btn-primary">Confirm</button>
         </form>
 

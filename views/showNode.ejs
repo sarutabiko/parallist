@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
 
-    <h1 class="text-center">
+    <!--    <h1 class="text-center">
         <%= getNode.topic %> : <%= getNode.entry %>
     </h1>
     <div class="col-6 offset-3">
@@ -21,24 +21,33 @@
                 <button class="btn   btn-danger ">Delete</button>
             </form>
         </div>
-    </div>
+    </div> -->
+    <div class="row justify-content-center">
 
-    <div class="card col-4 offset-4 mt-3">
-        <div class="card-body">
-            <h1 class="card-title text-center ">
-                <%= getNode.topic %> : <%= getNode.entry %>
-            </h1>
-            <p class="my-3 card-text border rounded-3 px-3 bg-secondary text-white text-center">
-                <%= getNode.data %>
-            </p>
-            <p class="fw-light fs-6 text-muted">Last modified: <%= getNode.date.toLocaleString() %>
-            </p>
-            <div class="d-flex justify-content-evenly">
-                <a class="btn btn-info" href="/nodes">Back</a>
-                <a class="btn btn-warning" href="/nodes/<%=getNode._id%>/edit">Edit</a>
-                <form class="" action="/nodes/<%= getNode._id  %>?_method=DELETE" method="post">
-                    <button class="btn   btn-danger ">Delete</button>
-                </form>
+        <div class="col-6 col-lg-5 col-md-8 col-sm-10 mt-3">
+            <div class="card shadow ">
+                <div class="card-body d-flex flex-column justify-content-evenly">
+                    <h1 class="row card-title text-center">
+                        <div class="col text-start badge bg-primary">
+                            <%= getNode.topic %>
+                        </div>
+                        <div class="col text-end badge bg-black">
+                            <%= getNode.entry %>
+                        </div>
+                    </h1>
+                    <p class="my-3 fs-4 card-text border rounded-3 px-3 bg-secondary text-white text-center">
+                        <%= getNode.data %>
+                    </p>
+                    <p class="fw-light fs-6 text-muted text-center">Last modified: <%= getNode.date.toLocaleString() %>
+                    </p>
+                    <div class="d-flex justify-content-evenly">
+                        <a class="btn btn-info" href="/nodes">Back</a>
+                        <a class="btn btn-warning" href="/nodes/<%=getNode._id%>/edit">Edit</a>
+                        <form class="" action="/nodes/<%= getNode._id  %>?_method=DELETE" method="post">
+                            <button class="btn   btn-danger ">Delete</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

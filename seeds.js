@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
+const { Node, topicList } = require('./models/listNode');
 
-const Node = require('./models/listNode');
 // mongo connection
 main()
     .then(() => {
@@ -19,33 +19,23 @@ const N = new Node({
     data: "First entry, Wooooo!"
 })
 
-N.save()
-    .then(
-        n => console.log(n)
-    )
+await N.save();
 
 const fakeData = [{
     topic: "RealTalk",
-    entry: 12,
+    entry: await Node.find({ 'topic': `${this.topic}` }).countDocuments() + 1,
     data: "Phue phue phue this text is legitimate.",
 }, {
     topic: "Jap",
-    entry: 364,
+    entry: await Node.find({ 'topic': `${this.topic}` }).countDocuments() + 1,
     data: "what am I doing nani nani",
 }, {
     topic: "Musings",
-    entry: 58,
-    data: "Not bored at all.",
-}, {
-    topic: "Musings",
-    entry: 315,
+    entry: await Node.find({ 'topic': `${this.topic}` }).countDocuments() + 1,
     data: "An unexamined life is not worth living - Hypocrites",
-}, {
-    topic: "RealTalk",
-    entry: 468,
-    data: "Still alive",
 },
 ];
+
 
 Node.insertMany(fakeData)
     .then(res => console.log(res))
