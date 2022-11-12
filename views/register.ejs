@@ -1,0 +1,31 @@
+<% layout('layouts/boilerplate') %>
+
+    <h1 class="text-center">Register</h1>
+
+    <div class="col-6 offset-3 ">
+        <form action="/" method="post">
+            <label class="form-label" for="email">Email </label>
+            <div class="input-group mb-3">
+                <input type="email" name="email" class="form-control" placeholder="example@email.com" aria-label="Email"
+                    aria-describedby="basic-addon1">
+            </div>
+            <label class="form-label" for="username">Username </label>
+
+            <div class="input-group mb-3">
+                <input type="text" name="username" class="form-control" aria-label="Username"
+                    aria-describedby="basic-addon1">
+            </div>
+            <label class="form-label" for="password">Password </label>
+
+
+            <div class="input-group mb-3">
+                <input type="password" name="password" class="form-control" aria-label="password"
+                    aria-describedby="basic-addon1">
+            </div>
+
+            <button class="btn btn-success">Register</button>
+        </form>
+        <hr>
+        or <a class="btn btn-warning" href="/login">Log in</a>
+
+    </div>
