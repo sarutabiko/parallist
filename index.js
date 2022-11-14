@@ -1,3 +1,9 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
+console.log(process.env.SECRET);
+
 const express = require("express");
 const path = require("path");
 const methodOverride = require("method-override");
@@ -6,7 +12,6 @@ const ejsMate = require("ejs-mate");
 const mongoose = require('mongoose');
 
 const ExpressError = require("./utils/ExpressError");
-const { NodeSchema } = require("./models/validationSchemas");
 
 const app = express();
 app.set("views", path.join(__dirname, 'views'));
@@ -39,7 +44,7 @@ app.listen('3333', () => {
 })
 
 app.get('/', (req, res) => {
-    res.send('<h1> Welcome to "/" </h1> <a href="/nodes">Lets go</a >');
+    res.redirect('/nodes');
 })
 
 app.use('/', usersRoutes);
