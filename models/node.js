@@ -1,11 +1,8 @@
 const mongoose = require('mongoose');
 
-const topicList = ["Musings", "Jap", "RealTalk"];
-
-const listNode = new mongoose.Schema({
+const nodeSchema = new mongoose.Schema({
     topic: {
         type: String,
-        enum: topicList
     },
     entry: Number,
     data: {
@@ -15,18 +12,22 @@ const listNode = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 })
 
-/* listNode.statics.addTopic = function (newTopic) {
+/* nodeSchema.statics.addTopic = function (newTopic) {
     topicList.push(newTopic);
 }
 
-listNode.statics.delTopic = async function (delTopic) {
+nodeSchema.statics.delTopic = async function (delTopic) {
     topicList.find(element => element === delTopic);
     await this.deleteMany({ topic: delTopic });
 } */
 
-const Node = mongoose.model('Node', listNode);
-module.exports = { Node, topicList };
+const Node = mongoose.model('Node', nodeSchema);
+module.exports = { Node };
 
