@@ -1,9 +1,11 @@
 <% layout('layouts/boilerplate') %>
 
     <h1 class="text-center">Create a new node:</h1>
+    <hr>
 
     <div class="col-6 offset-3 ">
-        <form action="/nodes" method="post">
+        <form action="/nodes" method="post" enctype="multipart/form-data">
+
             <div class="row">
                 <div class="col-6 mb-3 d-inline-flex">
                     <select required name="topic" class="form-select" id="topic">
@@ -18,10 +20,17 @@
                     or create a
                     new topic (coming soon)</a>
             </div>
-            <br>
-            <label class="form-label" for="data">Enter data: </label>
-            <textarea class="form-control" name="data" id="data" cols="30" rows="8" placeholder="type here.."
-                required="Text is required."></textarea>
+            <div class="row">
+
+                <label class="form-label" for="data">Enter data: </label>
+                <textarea class="form-control mb-2" name="data" id="data" cols="30" rows="8" placeholder="type here.."
+                    required="Text is required."></textarea>
+            </div>
+            <div class="row">
+
+                <label class="form-label" for="image" multiple>Upload image: </label>
+                <input type="file" class="" name="image" id="image">
+            </div>
             <hr>
             <button class="btn btn-warning">Submit</button>
     </div>
