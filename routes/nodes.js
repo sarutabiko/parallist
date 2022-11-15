@@ -10,13 +10,15 @@ const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 
+const { isLoggedIn } = require('../middleware');
+
 router.route('/')
     .get(catchAsync(nodes.renderIndex))
-    // .post(validateNode, catchAsync(nodes.createNode))
-    .post(upload.single('image'), (req, res) => { res.send(console.log(req.body, req.file)) })
+    .post(upload.array('image'), validateNode, catchAsync(nodes.createNode))
+// .post(upload.single('image'), (req, res) => { console.log(req.body.topic); res.status(200).send("Got it") })
 
 router.route('/new')
-    .get(nodes.renderNewForm)
+    .get(isLoggedIn, nodes.renderNewForm);
 
 
 router.route('/:id')

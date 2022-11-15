@@ -24,6 +24,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 const nodesRoutes = require('./routes/nodes');
 const usersRoutes = require('./routes/users');
 
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
+
+const session = require("express-session");
+const sessionConfig = {
+    secret: 'thisshouldbeabettersecret!',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 12,
+        maxAge: 1000 * 60 * 60 * 12,
+        sameSite: 'strict'
+    }
+}
+app.use(session(sessionConfig));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // mongo connection
 main()
@@ -42,6 +65,17 @@ async function main() {
 app.listen('3333', () => {
     console.log("App is listening on 3333 port.");
 })
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    // res.locals.success = req.flash('success');
+    // res.locals.error = req.flash('error');
+    // res.locals.alert = req.flash('alert');
+    // res.locals.message = '';
+    // console.log("req.session is: ", req.session);
+    console.log("res.locals is: ", res.locals);
+    next();
+});
 
 app.get('/', (req, res) => {
     res.redirect('/nodes');

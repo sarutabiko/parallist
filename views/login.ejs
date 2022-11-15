@@ -3,22 +3,26 @@
     <h1 class="text-center">Log in</h1>
 
     <div class="col-6 offset-3 ">
-        <form action="/" method="post">
-            <label class="form-label" for="username">Username </label>
+        <% if (currentUser) { %>
+            Successfully logged in.
+            <% } %>
+                <form action="/login" method="post">
+                    <label class="form-label" for="username">Username </label>
 
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-            </div>
-            <label class="form-label" for="password">Password </label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <label class="form-label" for="password">Password </label>
 
 
-            <div class="input-group mb-3">
-                <input type="password" class="form-control" aria-label="password" aria-describedby="basic-addon1">
-            </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" aria-label="password"
+                            aria-describedby="basic-addon1">
+                    </div>
 
-            <button class="btn btn-warning">Log in</button>
-        </form>
-        <hr>
-        or <a class="btn btn-success" href="/register">Register</a>
+                    <button class="btn btn-warning">Log in</button>
+                </form>
+                <hr>
+                or <a class="btn btn-success" href="/register">Register</a>
 
     </div>

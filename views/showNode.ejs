@@ -38,7 +38,9 @@
                     <p class="my-3 fs-4 card-text border rounded-3 px-3 bg-secondary text-white text-center">
                         <%= getNode.data %>
                     </p>
-                    <p class="fw-light fs-6 text-muted text-center">Last modified: <%= getNode.date.toLocaleString() %>
+                    <p class="fw-light fs-6 text-muted text-center">User: <%= getNode.author.username %>
+                    </p>
+                    <p class="fw-light fs-6 text-muted text-center">Created: <%= getNode.date.toLocaleString() %>
                     </p>
                     <div class="d-flex justify-content-evenly">
                         <a class="btn btn-info" href="/nodes">Back</a>

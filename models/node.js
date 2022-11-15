@@ -4,6 +4,12 @@ const nodeSchema = new mongoose.Schema({
     topic: {
         type: String,
     },
+    images: [
+        {
+            url: String,
+            filename: String
+        }
+    ],
     entry: Number,
     data: {
         type: String,
