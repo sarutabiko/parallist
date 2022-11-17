@@ -73,7 +73,7 @@ app.use((req, res, next) => {
     // res.locals.alert = req.flash('alert');
     // res.locals.message = '';
     // console.log("req.session is: ", req.session);
-    console.log("res.locals is: ", res.locals);
+    // console.log("res.locals is: ", res.locals);
     next();
 });
 

@@ -14,7 +14,7 @@ const { isLoggedIn } = require('../middleware');
 
 router.route('/')
     .get(catchAsync(nodes.renderIndex))
-    .post(upload.array('image'), validateNode, catchAsync(nodes.createNode))
+    .post(upload.array('image'), catchAsync(nodes.createNode))
 // .post(upload.single('image'), (req, res) => { console.log(req.body.topic); res.status(200).send("Got it") })
 
 router.route('/new')

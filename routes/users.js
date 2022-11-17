@@ -8,8 +8,9 @@ router.route('/login')
     .post(passport.authenticate('local', { failureFlash: false, failureRedirect: '/login' }), async (req, res) => {
         if (req.user) {
             // req.flash('success', "Successfully logged in.");
-            return res.redirect('/all');
+            return res.redirect('/nodes');
         }
+        console.log(req);
     });
 
 router.route('/register')

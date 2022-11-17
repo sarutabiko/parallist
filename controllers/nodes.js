@@ -21,10 +21,10 @@ module.exports.createNode = async (req, res) => {
     const newNode = new Node({ topic, entry, data });
     console.log("req,files is: ", req.files);
     console.log("req,.body is: ", req.body);
-    // newNode.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    newNode.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     newNode.author = req.user._id;
-    await newNode.save();
     console.log(newNode);
+    await newNode.save();
     res.redirect(`/nodes/${newNode.id}`);
 }
 
@@ -64,5 +64,5 @@ module.exports.renderEditForm = async (req, res, next) => {
     if (!getNode)
         return next(new AppError('404', "Node not found. Invalid _id."));
 
-    res.render('edit', { getNode, 'title': 'Edit node', topicList });
+    res.render('edit', { getNode, 'title': 'Edit node' });
 }

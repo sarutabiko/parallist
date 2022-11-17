@@ -17,7 +17,7 @@ const N = new Node({
     topic: "RealTalk",
     entry: 1,
     data: "First entry, Wooooo!",
-    author: '6373aecc675e3979721160d5'
+    author: '6373c46de90b30edda32f4ca'
 })
 
 const saveMany = async function () {
@@ -25,17 +25,17 @@ const saveMany = async function () {
         topic: "RealTalk",
         entry: await Node.find({ 'topic': `${this.topic}` }).countDocuments() + 1,
         data: "Phue phue phue this text is legitimate.",
-        author: '6373aecc675e3979721160d5'
+        author: '6373c46de90b30edda32f4ca'
     }, {
         topic: "Jap",
         entry: await Node.find({ 'topic': `${this.topic}` }).countDocuments() + 1,
         data: "what am I doing nani nani",
-        author: '6373aecc675e3979721160d5'
+        author: '6373c46de90b30edda32f4ca'
     }, {
         topic: "Musings",
         entry: await Node.find({ 'topic': `${this.topic}` }).countDocuments() + 1,
         data: "An unexamined life is not worth living - Hypocrites",
-        author: '6373aecc675e3979721160d5'
+        author: '6373c46de90b30edda32f4ca'
     },
     ];
 
