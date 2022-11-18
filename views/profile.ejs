@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate') %>
+
+    <h2>
+        <%= currentUser.username %>
+    </h2>
+    <div>
+        Email:<%= currentUser.email %>
+            <hr>
+            Topics:<% currentUser.topics.forEach((x)=>{%>
+                <a href="/nodes/?topic=<%=x%>" class="btn btn-success">
+                    <%=x%>
+                </a>
+                <% }) %>
+                    <hr>
+                    <h2> All your nodes:</h2>
+                    <div>
+                        <% for (let i of userNodes) {%>
+                            <a href="/nodes/?topic=<%=i.topic%>" class="btn btn-success">
+                                <%=i.topic%>
+                            </a>
+                            <br>
+                            <span>
+                                <%=i.data %>
+                            </span>
+                            <hr>
+                            <% } %>
+                    </div>
+    </div>
