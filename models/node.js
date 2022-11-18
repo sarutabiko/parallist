@@ -22,6 +22,10 @@ const nodeSchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    public: {
+        type: Boolean,
+        default: false
     }
 })
 

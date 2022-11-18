@@ -3,6 +3,6 @@
     font: white;
 }
 
-li:hover {
+#navbarNav li:hover {
     background-color: black;
 }
