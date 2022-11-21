@@ -11,8 +11,8 @@
                     <select required name="topic" class="form-select" id="topic">
                         <option value="">--Please select a node--</option>
                         <% currentUser.topics.forEach((x)=>{%>
-                            <option value="<%=x%>">
-                                <%=x%>
+                            <option value="<%=x.title%>">
+                                <%=x.title%>
                             </option>
                             <% }) %>
                     </select>
