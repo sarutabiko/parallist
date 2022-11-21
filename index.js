@@ -8,6 +8,7 @@ const express = require("express");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const flash = require('connect-flash');
 
 const mongoose = require('mongoose');
 
@@ -44,11 +45,14 @@ app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
+app.use(flash());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // mongo connection
+// const dbURL = process.env.DB_URL;
+const dbURL = 'mongodb://127.0.0.1:27017/parallist'
 main()
     .then(() => {
         console.log("Connection Open!!!");
@@ -57,8 +61,9 @@ main()
         err => { console.log("Ooops error!!!"); console.log(err); });
 
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/parallist');
+    await mongoose.connect(dbURL);
 }
+
 
 //express route handling
 
@@ -68,9 +73,9 @@ app.listen('3333', () => {
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
-    // res.locals.success = req.flash('success');
-    // res.locals.error = req.flash('error');
-    // res.locals.alert = req.flash('alert');
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    res.locals.alert = req.flash('alert');
     // res.locals.message = '';
     // console.log("req.session is: ", req.session);
     // console.log("res.locals is: ", res.locals);
