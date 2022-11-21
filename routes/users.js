@@ -7,9 +7,9 @@ const { isLoggedIn } = require("../middleware");
 
 router.route('/login')
     .get((req, res) => { res.render('login', { 'title': 'Log in' }); })
-    .post(passport.authenticate('local', { failureFlash: false, failureRedirect: '/login' }), async (req, res) => {
+    .post(passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), async (req, res) => {
         if (req.user) {
-            // req.flash('success', "Successfully logged in.");
+            req.flash('success', "Successfully logged in.");
             return res.redirect('/nodes');
         }
         console.log(req);
@@ -27,8 +27,10 @@ router.route('/register')
                     return next(e);
                 // req.flash('success', 'Registered successfully. Welcome to 単語！');
                 console.log("registerUser returned: ", registeredUser);
+                req.flash('success', "Registered successfully. Welcome to Parallist!");
+                // console.log("Registered successfully. Welcome to 単語！");
                 res.status(200);
-                res.send("Registered successfully. Welcome to 単語！");
+                res.redirect('/');
             })
         } catch (err) {
             // req.flash('error', err.message);
@@ -43,7 +45,9 @@ router.route('/register')
 router.get('/logout', (req, res) => {
     req.logOut(function (err) {
         if (err) { return next(err); }
-        console.log('alert', "Logged out");
+        // console.log('alert', "Logged out");
+        req.flash('alert', "Logged out");
+
         res.redirect('back');
     });
 })

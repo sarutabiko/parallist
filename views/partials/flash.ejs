@@ -1,0 +1,28 @@
+<% if(success && success.length) {%>
+    <div class="alert alert-success" role="alert">
+        <%= success %>
+            <button class="hide">
+                <span>&times;</span>
+            </button>
+    </div>
+    <% } %>
+
+        <% if(error && error.length) {%>
+            <div class="alert alert-danger" role="alert">
+                <b>Error:</b>
+                <%= error %>
+                    <button class="hide">
+                        <span>&times;</span>
+                    </button>
+            </div>
+            <% } %>
+
+                <% if(alert && alert.length) {%>
+                    <div class="alert alert-warning" role="alert">
+                        <b>Alert:</b>
+                        <%= alert %>
+                            <button class="hide">
+                                <span>&times;</span>
+                            </button>
+                    </div>
+                    <% } %>
