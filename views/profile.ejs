@@ -2,127 +2,100 @@
 
     <div class="container text-center">
         <div class="row align-items-start justify-content-center">
-            <div class="col">
 
-                <div class="row align-items-start justify-content-center">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                <% currentUser.topics.forEach((x)=>{%>
-                                    <input type="checkbox" class="btn-check" id="<%=x%>" autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="<%=x%>">
-                                        <%=x%>
-                                    </label>
-                                    <% }) %>
-                                        <input type="button" class="btn-check" id="clearall" autocomplete="off">
-                                        <label class="btn btn-warning" checked for="clearall">
-                                            Clear all
+            <% if (currentUser.topics.length) {%>
+                <div class="col">
+                    <div class="row align-items-start justify-content-center">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    <% currentUser.topics.forEach((x)=>{%>
+                                        <input type="checkbox" class="btn-check" id="<%=x.title%>" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="<%=x.title%>">
+                                            <%=x.title%>
                                         </label>
-                            </div>
-                        </li>
-                        <% for (let i of userNodes) {%>
-                            <ul class="list-group list-group-horizontal d-flex">
+                                        <% }) %>
+                                            <input type="button" class="btn-check" id="clearall" autocomplete="off">
+                                            <label class="btn btn-warning" checked for="clearall">
+                                                Clear all
+                                            </label>
+                                </div>
+                            </li>
+                            <% for (let i of userNodes) {%>
+                                <ul class="list-group list-group-horizontal d-flex">
 
-                                <li class="list-group-item w">
-                                    <%=i.topic%>
-                                </li>
-                                <li class="list-group-item flex-fill">
-                                    <%=i.data %>
-                                </li>
-                                <li class="list-group-item">Public</li>
-                            </ul>
-                            <% } %>
-                    </ul>
-                </div>
-            </div>
-            <div class="col">
-                <div class="row align-items-start justify-content-center mb-2">
-                    <div class="card shadow mb-2" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <%= currentUser.username %>
-                            </h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                <%= currentUser.email %>
-                            </h6>
-
-                            <p class="card-text">
-                            <ul class="list-group">
-                                <% currentUser.topics.forEach((x)=>{%>
-                                    <li class="list-group-item d-flex">
-                                        <span class="">
-                                            <%=x %>
-                                        </span><span class="badge bg-primary rounded-pill ms-auto">14</span>
+                                    <li class="list-group-item">
+                                        <%=i.topic%>
                                     </li>
-                                    <% }) %>
-                            </ul>
-                            </p>
-                            <a href="#" class="card-link link-danger">Delete account</a>
-                            <a href="/logout" class="card-link">Log Out</a>
-                        </div>
+                                    <li class="list-group-item">
+                                        <%=i.entry%>
+                                    </li>
+                                    <li class="list-group-item flex-fill">
+                                        <%=i.data %>
+                                    </li>
+                                    <li class="list-group-item">Public</li>
+                                </ul>
+                                <% } %>
+                        </ul>
                     </div>
                 </div>
-                <div class="row align-items-start justify-content-center mb-2">
-                    <% if (userNodes[0]) { %>
-                        <div class="card shadow" style="width: fit-content;">
-                            <div class="card-body">
-                                <h1 class="row card-title text-center">
-                                    <div class="col text-start badge bg-primary">
-                                        <%= userNodes[0].topic %>
-                                    </div>
-                                    <div class="col text-end badge bg-black">
-                                        <%= userNodes[0].entry %>
-                                    </div>
-                                </h1>
-                                <p
-                                    class="my-3 fs-4 card-text border rounded-3 px-3 bg-secondary text-white text-center">
-                                    <%= userNodes[0].data %>
-                                </p>
-                                <p class="fw-light fs-6 text-muted text-center">Created: <%=
-                                        userNodes[0].date.toLocaleString() %>
-                                </p>
+                <% } %>
+                    <div class="col">
+                        <div class="row align-items-start justify-content-center mb-2">
+                            <div class="card shadow mb-2" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= currentUser.username %>
+                                    </h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        <%= currentUser.email %>
+                                    </h6>
+
+                                    <p class="card-text">
+                                    <ul class="list-group">
+                                        <% currentUser.topics.forEach((x)=>{%>
+                                            <li class="list-group-item d-flex">
+                                                <span class="">
+                                                    <%=x.title %>
+                                                </span><span class="badge bg-primary rounded-pill ms-auto">
+                                                    <%=x.count %>
+                                                </span>
+                                            </li>
+                                            <% }) %>
+                                    </ul>
+                                    </p>
+                                    <a href="#" class="card-link link-danger">Delete account</a>
+                                    <a href="/logout" class="card-link">Log Out</a>
+                                </div>
                             </div>
                         </div>
-                        <% } %>
-                </div>
-            </div>
+                        <div class="row align-items-start justify-content-center mb-2">
+                            <% if (userNodes[0]) { %>
+                                <div class="card shadow" style="width: fit-content;">
+                                    <div class="card-body">
+                                        <h1 class="row card-title text-center">
+                                            <div class="col text-start badge bg-primary">
+                                                <%= userNodes[0].topic %>
+                                            </div>
+                                            <div class="col text-end badge bg-black">
+                                                <%= userNodes[0].entry %>
+                                            </div>
+                                        </h1>
+                                        <p
+                                            class="my-3 fs-4 card-text border rounded-3 px-3 bg-secondary text-white text-center">
+                                            <%= userNodes[0].data %>
+                                        </p>
+                                        <p class="fw-light fs-6 text-muted text-center">Created: <%=
+                                                userNodes[0].date.toLocaleString() %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
 
 
         </div>
 
     </div>
-    </div>
-
-
-    <div>
-        Email:<%= currentUser.email %>
-            <hr>
-            Topics:<% currentUser.topics.forEach((x)=>{%>
-                <a href="/nodes/?topic=<%=x%>" class="btn btn-success">
-                    <%=x%>
-                </a>
-                <% }) %>
-                    <hr>
-                    <h2> All your nodes:
-                    </h2>
-                    Filter: <% currentUser.topics.forEach((x)=>{%>
-                        <input type="checkbox" class="btn-check" id="<%=x%>" checked autocomplete="off">
-                        <label class="btn btn-primary" for="<%=x%>">
-                            <%=x%>
-                        </label>
-                        <% }) %>
-                            <input type="checkbox" class="btn-check" id="clearall" autocomplete="off">
-                            <label class="btn btn-danger" for="clearall">
-                                Clear all
-                            </label>
-
-                            <div>
-                                <ul class="list-group">
-                                    <% for (let i of userNodes) {%>
-                                        <li class="list-group-item">
-                                            <%=i.data %>
-                                        </li>
-                                        <% } %>
-                                </ul>
-                            </div>
     </div>
