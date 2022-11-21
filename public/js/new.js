@@ -24,6 +24,7 @@ const createInputBar = function () {
     span.setAttribute('class', 'input-group-text');
     const input = document.createElement('input');
     input.setAttribute('type', 'text');
+    input.setAttribute('required', true);
     input.setAttribute('name', 'topic');
     input.setAttribute('class', 'form-control');
     span.innerText = "Node";
