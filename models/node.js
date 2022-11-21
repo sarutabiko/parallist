@@ -29,14 +29,14 @@ const nodeSchema = new mongoose.Schema({
     }
 })
 
-/* nodeSchema.statics.addTopic = function (newTopic) {
-    topicList.push(newTopic);
-}
+nodeSchema.virtual('thumbs').get(function () {
+    const thumbArray = [];
+    this.images.forEach(img => { thumbArray.push(img.url.replace('upload', 'upload/w_70,h_40,c_fit')) });
+    return thumbArray;
+});
 
-nodeSchema.statics.delTopic = async function (delTopic) {
-    topicList.find(element => element === delTopic);
-    await this.deleteMany({ topic: delTopic });
-} */
+// https://res.cloudinary.com/demo/image/upload/w_300,h_100,c_fit/flower.jpg
+
 
 const Node = mongoose.model('Node', nodeSchema);
 module.exports = { Node };
