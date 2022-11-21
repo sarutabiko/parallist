@@ -7,28 +7,49 @@
         <form action="/nodes" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-6 mb-3 d-inline-flex">
+
                     <select required name="topic" class="form-select" id="topic">
                         <option value="">--Please select a node--</option>
-                        <option value="RealTalk">RealTalk</option>
-                        <option value="Jap">Jap</option>
-                        <option value="Musings">Musings</option>
+                        <% currentUser.topics.forEach((x)=>{%>
+                            <option value="<%=x%>">
+                                <%=x%>
+                            </option>
+                            <% }) %>
                     </select>
                 </div>
 
-                <a class="justify-content-center col-6 mb-3 d-inline-flex btn btn-primary disabled" href="/nodes/new">
-                    or create a
-                    new topic (coming soon)</a>
+                <a class="justify-content-center col-6 mb-3 d-inline-flex btn btn-primary" id="createNewNode" href="#">
+                    Create
+                    new topic</a>
             </div>
             <div class="row">
-                <label class="form-label" for="data">Enter data: </label>
-                <textarea class="form-control mb-2" name="data" id="data" cols="30" rows="8" placeholder="type here.."
-                    required="Text is required."></textarea>
+
+                <div class="input-group">
+                    <span class="input-group-text mb-3">Text</span>
+                    <textarea class="form-control mb-3" name="data" id="data" cols="30" rows="8"
+                        aria-label="With textarea"></textarea>
+                </div>
             </div>
             <div class="row">
-                <label class="form-label" for="image">Upload image: </label>
-                <input type="file" class="" name="image" id="image" multiple>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="image">Image</label>
+                    <input type="file" class="form-control" name="image" id="image" multiple>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Date</span>
+                    <% const date=new Date(); const day=date.getDate(); const month=date.getMonth() + 1; const
+                        year=date.getFullYear(); if (month < 10) month="0" + month; if (day < 10) day="0" + day; const
+                        today=year + "-" + month + "-" + day; if (today) {%>
+                        <input type="date" id="date" name="date" value=<%=today%> min="2000-01-01" max="">
+                        <% }%>
+                </div>
             </div>
             <hr>
             <button class="btn btn-warning">Submit</button>
         </form>
     </div>
+
+    <script src="/js/new.js"></script>
