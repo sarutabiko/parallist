@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { User } = require('./user');
 
 const nodeSchema = new mongoose.Schema({
     topic: {
@@ -36,7 +37,6 @@ nodeSchema.virtual('thumbs').get(function () {
 });
 
 // https://res.cloudinary.com/demo/image/upload/w_300,h_100,c_fit/flower.jpg
-
 
 const Node = mongoose.model('Node', nodeSchema);
 module.exports = { Node };
