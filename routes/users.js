@@ -22,15 +22,14 @@ router.route('/register')
             const { email, username, password } = req.body;
             const user = new User({ email, username });
             const registeredUser = await User.register(user, password);
-            req.login(registeredUser, err => {
+            req.login(registeredUser, async err => {
                 if (err)
                     return next(e);
                 // req.flash('success', 'Registered successfully. Welcome to 単語！');
                 console.log("registerUser returned: ", registeredUser);
                 req.flash('success', "Registered successfully. Welcome to Parallist!");
                 // console.log("Registered successfully. Welcome to 単語！");
-                res.status(200);
-                res.redirect('/');
+                res.redirect('/nodes');
             })
         } catch (err) {
             // req.flash('error', err.message);
@@ -56,7 +55,7 @@ router.get('/profile/:username', isLoggedIn, async (req, res) => {
     const { username } = req.params;
     const user = await User.findOne({ "username": username });
     const userNodes = await Node.find({ "author": user._id });
-    // console.log(userNodes);
+    console.log(userNodes);
     res.render('profile', { title: "Profile", userNodes })
 })
 
